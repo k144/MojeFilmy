@@ -1,5 +1,9 @@
 <template>
-<div id="modal"></div>
+<div>
+  <p>{{mode}}</p>
+  <button @click="close">X</button>
+
+</div>
 
 </template>
 
@@ -10,7 +14,13 @@ export default {
 	data() {
 		return {
 		}
-	}
+	},
+  props: ["mode"],
+  methods: {
+    close() {
+      this.$emit("closeModal")
+    }
+  }
 }
 </script>
 

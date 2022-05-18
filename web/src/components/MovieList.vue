@@ -1,12 +1,14 @@
 <template>
-
-<table>
-  <tr v-for="(movie, index) in movies" v-bind:key="index">
-    <td>{{movie.year}}</td>
-    <td>{{movie.title}}</td>
-    <button @click="deleteMovie(movie)">Usuń</button>
-  </tr>
-</table>
+<div>
+  <button @click="addMovie">Dodaj film</button>
+  <table>
+    <tr v-for="(movie, index) in movies" v-bind:key="index">
+      <td>{{movie.year}}</td>
+      <td>{{movie.title}}</td>
+      <button @click="deleteMovie(movie)">Usuń</button>
+    </tr>
+  </table>
+</div>
 
 </template>
 
@@ -20,7 +22,8 @@ export default {
         {title: "2001: Odyseja kosmiczna", year: 1968},
         {title: "Batman", year: 2022},
         {title: "Batman", year: 1989},
-      ]
+      ],
+      newMovie: {title: '', year: null}
     }
   },
   methods: {
@@ -29,8 +32,11 @@ export default {
         `Czy na pewno chcesz usunąc film ${movie.title} (${movie.year})?`
       )) return;
       this.movies = this.movies.filter((m) => m != movie )
+    },
+    addMovie() {
+      this.$emit('openModal', "add")
     }
-  }
+  },
 }
 </script>
 
