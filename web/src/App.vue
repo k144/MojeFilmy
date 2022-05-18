@@ -1,7 +1,25 @@
 <template>
+
+<div id="app">
+
+  <MovieList />
+  <MovieModal />
+
+</div>
+
 </template>
 
 <script>
+import MovieList from "./components/MovieList.vue";
+import MovieModal from "./components/MovieModal.vue";
+
+export default {
+  name: "app",
+  components: {
+    MovieList,
+    MovieModal,
+  }
+}
 </script>
 
 <style>
