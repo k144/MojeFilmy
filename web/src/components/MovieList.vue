@@ -39,12 +39,10 @@ export default {
       this.$emit('openModal', "add")
     },
     editMovie(movie) {
-      this.$emit('openModal', "edit")
-      console.log(movie)
+      this.$emit('openModal', "edit", movie)
     },
     previewMovie(movie) {
-      this.$emit('openModal', "preview")
-      console.log(movie)
+      this.$emit('openModal', "preview", movie)
     },
   },
 }

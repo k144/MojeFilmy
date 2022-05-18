@@ -3,7 +3,7 @@
 <div id="app">
 
   <MovieList @openModal="openModal" />
-  <MovieModal v-show="modalIsOpen" :mode="modalMode" @closeModal="closeModal" />
+  <MovieModal v-show="modalIsOpen" :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" />
 
 </div>
 
@@ -19,6 +19,7 @@ export default {
     return {
       modalIsOpen: false,
       modalMode: undefined,
+      selectedMovie: {title: '', year: undefined},
     }
   },
   components: {
@@ -26,9 +27,10 @@ export default {
     MovieModal,
   },
   methods: {
-    openModal(mode) {
+    openModal(mode, movie={title: '', year: undefined}) {
       console.log(mode)
       this.modalMode = mode
+      this.selectedMovie = movie;
       this.modalIsOpen = true
     },
     closeModal() {
