@@ -4,6 +4,7 @@
     <tr v-for="(movie, index) in movies" v-bind:key="index">
         <td>{{movie.year}}</td>
         <td>{{movie.title}}</td>
+        <button @click="deleteMovie(movie)">Usuń</button>
     </tr>
 </table>
 
@@ -20,6 +21,14 @@ export default {
                 {title: "Batman", year: 2022},
                 {title: "Batman", year: 1989},
             ]
+        }
+    },
+    methods: {
+        deleteMovie(movie) {
+            if (!confirm(
+                `Czy na pewno chcesz usunąc film ${movie.title} (${movie.year})?`
+            )) return;
+            this.movies = this.movies.filter((m) => m != movie )
         }
     }
 }
