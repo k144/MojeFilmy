@@ -6,11 +6,11 @@
 <script>
 
 export default {
-    name: 'MovieModal',
-    data() {
-        return {
-        }
-    }
+	name: 'MovieModal',
+	data() {
+		return {
+		}
+	}
 }
 </script>
 
