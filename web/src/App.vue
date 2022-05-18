@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       modalIsOpen: false,
-      modalMode: "add",
+      modalMode: undefined,
     }
   },
   components: {
@@ -28,6 +28,7 @@ export default {
   methods: {
     openModal(mode) {
       console.log(mode)
+      this.modalMode = mode
       this.modalIsOpen = true
     },
     closeModal() {

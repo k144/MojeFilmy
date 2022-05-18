@@ -6,6 +6,8 @@
       <td>{{movie.year}}</td>
       <td>{{movie.title}}</td>
       <button @click="deleteMovie(movie)">Usuń</button>
+      <button @click="editMovie(movie)">Edytuj</button>
+      <button @click="previewMovie(movie)">Podgląd</button>
     </tr>
   </table>
 </div>
@@ -35,7 +37,15 @@ export default {
     },
     addMovie() {
       this.$emit('openModal', "add")
-    }
+    },
+    editMovie(movie) {
+      this.$emit('openModal', "edit")
+      console.log(movie)
+    },
+    previewMovie(movie) {
+      this.$emit('openModal', "preview")
+      console.log(movie)
+    },
   },
 }
 </script>
