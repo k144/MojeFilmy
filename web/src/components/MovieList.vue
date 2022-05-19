@@ -17,6 +17,8 @@
 <script>
 
 import Movie from "../classes/movie.js";
+import Config from "../config.js";
+const axios = require('axios');
 
 export default {
   name: 'MovieList',
@@ -35,7 +37,8 @@ export default {
       if (!confirm(
         `Czy na pewno chcesz usunąc film ${movie.title} (${movie.year})?`
       )) return;
-      this.movies = this.movies.filter((m) => m != movie )
+      axios.delete(Config.api + "/" + movie.id)
+      //this.movies = this.movies.filter((m) => m != movie )
     },
     addMovie() {
       this.$emit('openModal', "add")

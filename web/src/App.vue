@@ -20,7 +20,6 @@ export default {
     return {
       modalIsOpen: false,
       modalMode: undefined,
-      // zrefaktoryzować na klasy movie
       selectedMovie: new Movie,
     }
   },

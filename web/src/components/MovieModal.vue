@@ -7,7 +7,7 @@
   Rok: <input type="number" v-model="movie.year">
   <br>
   <p>{{movie.date}}</p>
-  <button v-show='mode != "preview"'>{{getButtonText()}}</button>
+  <button @click="send" v-show='mode != "preview"'>{{getButtonText()}}</button>
 
 
 </div>
@@ -17,6 +17,8 @@
 <script>
 
 import Movie from "../classes/movie.js";
+import Config from "../config.js";
+const axios = require('axios');
 
 const buttonText = new Map([
   ['add', 'Dodaj film'],
@@ -38,6 +40,17 @@ export default {
     getButtonText() {
       console.log(this.mode)
       return buttonText.get(this.mode)
+    },
+    send() {
+      let data = JSON.stringify(this.movie);
+      switch (this.mode) {
+        case "add":
+          axios.post(Config.api, data)
+          break;
+        case "edit":
+          axios.put(Config.api + "/" + this.movie.id, data)
+          break;
+      }
     },
   },
   watch: {
