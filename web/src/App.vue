@@ -12,6 +12,7 @@
 <script>
 import MovieList from "./components/MovieList.vue";
 import MovieModal from "./components/MovieModal.vue";
+import Movie from "./classes/movie.js";
 
 export default {
   name: "app",
@@ -19,7 +20,8 @@ export default {
     return {
       modalIsOpen: false,
       modalMode: undefined,
-      selectedMovie: {title: '', year: undefined},
+      // zrefaktoryzować na klasy movie
+      selectedMovie: new Movie,
     }
   },
   components: {
@@ -27,8 +29,7 @@ export default {
     MovieModal,
   },
   methods: {
-    openModal(mode, movie={title: '', year: undefined}) {
-      console.log(mode)
+    openModal(mode, movie = new Movie) {
       this.modalMode = mode
       this.selectedMovie = movie;
       this.modalIsOpen = true
@@ -36,7 +37,7 @@ export default {
     closeModal() {
       this.modalIsOpen = false;
     }
-  }
+  },
 }
 </script>
 

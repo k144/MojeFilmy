@@ -16,6 +16,8 @@
 
 <script>
 
+import Movie from "../classes/movie.js";
+
 const buttonText = new Map([
   ['add', 'Dodaj film'],
   ['edit', 'Wprowadź zmiany'],
@@ -25,7 +27,7 @@ export default {
 	name: 'MovieModal',
 	data() {
 		return {
-      movie: {title: '', year: undefined}
+      movie: new Movie
 		}
 	},
   props: ["mode", "selectedMovie"],

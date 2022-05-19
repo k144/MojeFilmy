@@ -15,17 +15,19 @@
 </template>
 
 <script>
+
+import Movie from "../classes/movie.js";
+
 export default {
   name: 'MovieList',
   data() {
     return {
       movies: [
-        {title: "Drive", year: 2011},
-        {title: "2001: Odyseja kosmiczna", year: 1968},
-        {title: "Batman", year: 2022},
-        {title: "Batman", year: 1989},
+        new Movie("Drive", 2011),
+        new Movie("2001: Odyseja kosmiczna", 1968),
+        new Movie("Batman", 2022),
+        new Movie("Batman", 1989),
       ],
-      newMovie: {title: '', year: null}
     }
   },
   methods: {
