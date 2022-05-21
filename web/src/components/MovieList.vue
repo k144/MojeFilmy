@@ -16,19 +16,20 @@
 
 <script>
 
-import Movie from "../classes/movie.js";
+// import Movie from "../classes/movie.js";
 import Config from "../config.js";
 const axios = require('axios');
+
 
 export default {
   name: 'MovieList',
   data() {
     return {
       movies: [
-        new Movie("Drive", 2011),
-        new Movie("2001: Odyseja kosmiczna", 1968),
-        new Movie("Batman", 2022),
-        new Movie("Batman", 1989),
+        // new Movie("Drive", 2011),
+        // new Movie("2001: Odyseja kosmiczna", 1968),
+        // new Movie("Batman", 2022),
+        // new Movie("Batman", 1989),
       ],
     }
   },
@@ -50,6 +51,11 @@ export default {
       this.$emit('openModal', "preview", movie)
     },
   },
+  mounted: async function() {
+    let get = await axios.get(Config.api);
+    this.movies = get.data;
+    
+  }
 }
 </script>
 

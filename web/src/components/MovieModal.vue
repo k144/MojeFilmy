@@ -41,14 +41,22 @@ export default {
       console.log(this.mode)
       return buttonText.get(this.mode)
     },
-    send() {
+    async send() {
       let data = JSON.stringify(this.movie);
       switch (this.mode) {
         case "add":
-          axios.post(Config.api, data)
+          await axios.post(
+            Config.api,
+            data,
+            {headers: {"Content-Type": "application/json"}}
+          )
           break;
         case "edit":
-          axios.put(Config.api + "/" + this.movie.id, data)
+          await axios.put(
+            Config.api + "/" + this.movie.id,
+            data,
+            {headers: {"Content-Type": "application/json"}}
+          )
           break;
       }
     },

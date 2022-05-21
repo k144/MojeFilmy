@@ -10,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors();
+
 builder.Services.AddDbContext<MovieContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("MovieDb")));
 
 var app = builder.Build();
@@ -61,8 +63,7 @@ app.MapDelete("movies/{id}", async (MovieContext db, int id) =>
     return Results.NoContent();
 });
 
-
-
+app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 
 app.MapControllers();
