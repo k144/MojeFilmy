@@ -25,7 +25,44 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapGet("movies", async (MovieContext db) => await db.Movies.ToListAsync());
+app.MapGet("movies", async (MovieContext db) =>
+    await db.Movies.ToListAsync()
+);
+
+app.MapGet("movies/{id}", async (MovieContext db, int id) =>
+    await db.Movies.FindAsync(id)
+);
+
+app.MapPost("movies", async (MovieContext db, Movie movie) => {
+    await db.Movies.AddAsync(movie);
+    await db.SaveChangesAsync();
+    return Results.Accepted();
+});
+
+app.MapPut("movies/{id}", async (MovieContext db, int id, Movie movie) => 
+{
+    if (id != movie.Id) return Results.BadRequest();
+
+    db.Update(movie);
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
+app.MapDelete("movies/{id}", async (MovieContext db, int id) => 
+{
+    var movie = await db.Movies.FindAsync(id);
+    if (movie == null) return Results.NotFound();
+
+    db.Movies.Remove(movie);
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
+
+
+
 
 app.MapControllers();
 
