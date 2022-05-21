@@ -41,6 +41,7 @@ app.MapPost("movies", async (MovieContext db, Movie movie) => {
 
 app.MapPut("movies/{id}", async (MovieContext db, int id, Movie movie) => 
 {
+    if (movie.Id == null) movie.Id = id;
     if (id != movie.Id) return Results.BadRequest();
 
     db.Update(movie);
