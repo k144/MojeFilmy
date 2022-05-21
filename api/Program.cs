@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MovieContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("MovieDb")));
+builder.Services.AddDbContext<MovieContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("MovieDb")));
 
 var app = builder.Build();
 
