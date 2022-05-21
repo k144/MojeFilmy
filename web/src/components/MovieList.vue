@@ -34,27 +34,35 @@ export default {
     }
   },
   methods: {
-    deleteMovie(movie) {
+    async deleteMovie(movie) {
       if (!confirm(
         `Czy na pewno chcesz usunąc film ${movie.title} (${movie.year})?`
       )) return;
-      axios.delete(Config.api + "/" + movie.id)
+      await axios.delete(Config.api + "/" + movie.id)
+      await this.updateList();
       //this.movies = this.movies.filter((m) => m != movie )
     },
     addMovie() {
       this.$emit('openModal', "add")
+      this.updateList();
     },
     editMovie(movie) {
       this.$emit('openModal', "edit", movie)
+      this.updateList();
     },
     previewMovie(movie) {
       this.$emit('openModal', "preview", movie)
+      this.updateList();
     },
-  },
-  mounted: async function() {
-    let get = await axios.get(Config.api);
-    this.movies = get.data;
+    async updateList() {
+      let get = await axios.get(Config.api);
+      this.movies = get.data;
+      console.log(get.data);
     
+  }
+  },
+  mounted: function() {
+    this.updateList();
   }
 }
 </script>

@@ -2,7 +2,7 @@
 
 <div id="app">
 
-  <MovieList @openModal="openModal" />
+  <MovieList @openModal="openModal" ref="list" />
   <MovieModal v-show="modalIsOpen" :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" />
 
 </div>
@@ -35,6 +35,7 @@ export default {
     },
     closeModal() {
       this.modalIsOpen = false;
+      this.$refs.list.updateList();
     }
   },
 }

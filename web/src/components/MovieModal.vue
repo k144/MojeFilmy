@@ -59,6 +59,7 @@ export default {
           )
           break;
       }
+      this.close();
     },
   },
   watch: {
