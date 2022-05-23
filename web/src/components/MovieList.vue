@@ -1,19 +1,34 @@
 <template>
 <div class="container has-text-centered pt-6">
-    <button class="button" @click="addMovie">Dodaj film</button>
+    <button class="button is-primary my-3" @click="addMovie">Dodaj film</button>
   <table class="table mx-auto has-text-left">
     <thead>
       <tr>
         <th>Rok</th>
         <th>Tytuł</th>
+        <th></th>
       </tr>
     </thead>
     <tr v-for="(movie, index) in movies" v-bind:key="index">
-      <td>{{movie.year}}</td>
-      <td>{{movie.title}}</td>
-      <button class="button" @click="deleteMovie(movie)">Usuń</button>
-      <button class="button" @click="editMovie(movie)">Edytuj</button>
-      <button class="button" @click="previewMovie(movie)">Podgląd</button>
+      <td class="is-vcentered">{{movie.year}}</td>
+      <td class="is-vcentered">{{movie.title}}</td>
+      <td>
+        <button class="button is-text" @click="deleteMovie(movie)">
+          <div class="icon">
+            <font-awesome-icon icon="fa-solid fa-trash" />
+          </div>
+        </button>
+        <button class="button is-text" @click="editMovie(movie)">
+          <div class="icon">
+            <font-awesome-icon icon="fa-solid fa-pen" />
+          </div>
+        </button>
+        <button class="button is-text" @click="previewMovie(movie)">
+          <div class="icon">
+            <font-awesome-icon icon="fa-solid fa-eye" />
+          </div>
+        </button>
+      </td>
     </tr>
   </table>
 </div>
