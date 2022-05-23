@@ -7,7 +7,7 @@
     <p class="is-size-4">Edytujesz film {{movieOriginal.title}} ({{movieOriginal.year}})</p>
   </div>
 
-    <div class="columns">
+    <div class="columns my-3 mx-2">
 
       <div class="field column is-half form-group" :class="{ 'form-group--error': $v.title.$error }">
         <label class="label">{{mode=="edit" ? "Nowy tytuł" : "Tytuł"}}</label>
