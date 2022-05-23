@@ -1,14 +1,35 @@
 <template>
-<div>
-  <button @click="close">X</button>
-  <p>Tryb: {{mode}}</p>
-  Tytuł: <input type="text" v-model="movie.title">
-  <br>
-  Rok: <input type="number" v-model="movie.year">
-  <br>
-  <p>{{movie.date}}</p>
-  <button @click="send" v-show='mode != "preview"'>{{getButtonText()}}</button>
+<div class="modal">
+  <div class="modal-background" @click="close"></div>
+  <div class="modal-content box">
 
+    <div class="columns">
+
+      <div class="field column is-half">
+        <label class="label">Tytuł</label>
+        <div class="control">
+          <input class="input" :disabled='mode == "preview"' type="text" v-model="movie.title">
+        </div>
+      </div>
+
+      <div class="field column is-half">
+        <label class="label">Rok</label>
+        <div class="control">
+          <input class="input" :disabled='mode == "preview"' type="number" v-model="movie.year">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="columns is-centered" v-show='mode != "preview"'>
+      <div class="control column has-text-centered">
+        <button class="button is-primary" @click="send" >{{getButtonText()}}</button>
+      </div>
+    </div>
+    
+
+      <button class="modal-close is-large" @click="close"></button>
+  </div>
 
 </div>
 

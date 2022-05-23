@@ -1,10 +1,8 @@
 <template>
 
-<div id="app">
-
+<div id="app" class="container">
   <MovieList @openModal="openModal" ref="list" />
-  <MovieModal v-show="modalIsOpen" :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" />
-
+  <MovieModal :class='{ "is-active": modalIsOpen }' :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" />
 </div>
 
 </template>
