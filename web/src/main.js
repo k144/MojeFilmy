@@ -3,6 +3,9 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash, faPen, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
