@@ -1,8 +1,31 @@
 <template>
 
-<div id="app" class="container">
-  <MovieList @openModal="openModal" ref="list" />
+<div id="app">
+
+  <section class="hero is-black">
+  <div class="hero-body has-text-centered">
+    <p class="title">
+      Moje Filmy
+    </p>
+    <p class="subtitle">
+      Zadanie rekrutacyje dla SoftwareStudio
+    </p>
+  </div>
+</section>
+  
+  <section class="section">
+    <MovieList @openModal="openModal" ref="list" />
+  </section>
+
   <MovieModal :class='{ "is-active": modalIsOpen }' :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" />
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p><a href="https://jakubnowak.xyz">Jakub Nowak</a></p>
+      <p><a href="mailto:jakubnowak712@gmail.com">jakubnowak712@gmail.com</a></p>
+      <p>maj 2022</p>
+    </div>
+  </footer>
 </div>
 
 </template>
