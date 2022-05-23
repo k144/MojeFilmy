@@ -14,7 +14,7 @@
         <div class="control">
           <input class="input form-control" :class="$v.title.$dirty && (!$v.title.required || !$v.title.maxLength) ? 'is-danger' : ''" :disabled='mode == "preview"' type="text" v-model="title">
         </div>
-        <div class="help is-danger" v-if="!$v.title.required && $v.title.$dirty">Pole obowiązkowe</div>
+        <div class="help is-danger" v-if="!$v.title.required && $v.title.$dirty">Pole wymagane</div>
         <div class="help is-danger" v-if="!$v.title.maxLength && $v.title.$dirty">Tytuł filmu może mieć maksymalnie {{$v.title.$params.maxLength.max}} znaków</div>
       </div>
 
@@ -23,7 +23,7 @@
         <div class="control">
           <input class="input" :class="$v.year.$dirty && (!$v.year.required || !$v.year.between) ? 'is-danger' : ''" :disabled='mode == "preview"' type="number" v-model="year">
         </div>
-        <div class="help is-danger" v-if="!$v.year.required && $v.year.$dirty">Pole obowiązkowe</div>
+        <div class="help is-danger" v-if="!$v.year.required && $v.year.$dirty">Pole wymagane</div>
         <div class="help is-danger" v-if="!$v.year.between && $v.year.$dirty">Rok wydania musi być w zakresie od {{$v.year.$params.between.min}} do {{$v.year.$params.between.max}}</div>
       </div>
 
