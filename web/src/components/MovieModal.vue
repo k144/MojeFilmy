@@ -3,17 +3,21 @@
   <div class="modal-background" @click="close"></div>
   <div class="modal-content box">
 
+  <div v-show='mode == "edit"' class="content has-text-centered my-5">
+    <p class="is-size-4">Edytujesz film {{movieOriginal.title}} ({{movieOriginal.year}})</p>
+  </div>
+
     <div class="columns">
 
       <div class="field column is-half">
-        <label class="label">Tytuł</label>
+        <label class="label">{{mode=="edit" ? "Nowy tytuł" : "Tytuł"}}</label>
         <div class="control">
           <input class="input" :disabled='mode == "preview"' type="text" v-model="movie.title">
         </div>
       </div>
 
       <div class="field column is-half">
-        <label class="label">Rok</label>
+        <label class="label">{{mode=="edit" ? "Nowy rok wydania" : "Rok wydania"}}</label>
         <div class="control">
           <input class="input" :disabled='mode == "preview"' type="number" v-model="movie.year">
         </div>
@@ -23,7 +27,8 @@
 
     <div class="columns is-centered" v-show='mode != "preview"'>
       <div class="control column has-text-centered">
-        <button class="button is-primary" @click="send" >{{getButtonText()}}</button>
+        <button class="button m-2" @click="close" >Anuluj</button>
+        <button class="button is-primary m-2" @click="send" >{{getButtonText()}}</button>
       </div>
     </div>
     
@@ -50,7 +55,8 @@ export default {
 	name: 'MovieModal',
 	data() {
 		return {
-      movie: new Movie
+      movie: new Movie,
+      movieOriginal: new Movie
 		}
 	},
   props: ["mode", "selectedMovie"],
@@ -86,6 +92,7 @@ export default {
   watch: {
     selectedMovie (m) {
       this.movie = m
+      this.movieOriginal = { ...m }
     }
   }
 }
