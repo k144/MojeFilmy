@@ -111,6 +111,7 @@ export default {
       } catch (err) {
         this.$emit("error", err.message);
       }
+      this.$v.$reset();
       this.close();
     },
   },
