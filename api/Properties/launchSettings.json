@@ -26,18 +26,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "dotnet_devcert_linux": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
-      "enviromentVariables":
-        {
-          "ASPNETCORE_ENVIRONMENT": "Development",
-          "ASPNETCORE_Kestrel__Certificates__Default__Password": "tohCooYejeC:ui5T",
-          "ASPNETCORE_Kestrel__Certificates__Default__Path": "${env:HOME}/.aspnet/https/localhost.pfx"
-        }
     }
-
   }
 }
