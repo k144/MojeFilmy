@@ -90,22 +90,26 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-      let data = JSON.stringify(new Movie(this.title, this.year));
-      switch (this.mode) {
-        case "add":
-          await axios.post(
-            Config.api,
-            data,
-            {headers: {"Content-Type": "application/json"}}
-          )
-          break;
-        case "edit":
-          await axios.put(
-            Config.api + "/" + this.id,
-            data,
-            {headers: {"Content-Type": "application/json"}}
-          )
-          break;
+      try {
+        let data = JSON.stringify(new Movie(this.title, this.year));
+        switch (this.mode) {
+          case "add":
+            await axios.post(
+              Config.api,
+              data,
+              {headers: {"Content-Type": "application/json"}}
+            )
+            break;
+          case "edit":
+            await axios.put(
+              Config.api + "/" + this.id,
+              data,
+              {headers: {"Content-Type": "application/json"}}
+            )
+            break;
+        }
+      } catch (err) {
+        this.$emit("error", err.message);
       }
       this.close();
     },

@@ -1,5 +1,5 @@
 <template>
-<div class="container has-text-centered pt-6">
+<div class="container has-text-centered pt-6" v-show="movies.length > 0">
     <button class="button is-primary my-3" @click="addMovie">Dodaj film</button>
   <table class="table mx-auto has-text-left">
     <thead>
@@ -76,10 +76,12 @@ export default {
       this.updateList();
     },
     async updateList() {
-      let get = await axios.get(Config.api);
-      this.movies = get.data;
-      console.log(get.data);
-    
+      try {
+        let get = await axios.get(Config.api);
+        this.movies = get.data;
+      } catch (err) {
+        this.$emit("error", `${err.message} - problem z połączeniem z API`);
+      }
   }
   },
   mounted: function() {

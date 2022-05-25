@@ -14,10 +14,12 @@
 </section>
   
   <section class="section">
-    <MovieList @openModal="openModal" ref="list" />
+    <MovieList @openModal="openModal" @error="error" ref="list" />
+    <ErrorMessage :msg="errorMsg" />
   </section>
 
-  <MovieModal :class='{ "is-active": modalIsOpen }' :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" />
+  <MovieModal :class='{ "is-active": modalIsOpen }' :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" @error="error" />
+
 
   <footer class="footer">
     <div class="content has-text-centered">
@@ -33,6 +35,7 @@
 <script>
 import MovieList from "./components/MovieList.vue";
 import MovieModal from "./components/MovieModal.vue";
+import ErrorMessage from "./components/ErrorMessage.vue";
 import Movie from "./classes/movie.js";
 
 export default {
@@ -42,11 +45,13 @@ export default {
       modalIsOpen: false,
       modalMode: undefined,
       selectedMovie: new Movie,
+      errorMsg: "",
     }
   },
   components: {
     MovieList,
     MovieModal,
+    ErrorMessage,
   },
   methods: {
     openModal(mode, movie = new Movie) {
@@ -57,6 +62,9 @@ export default {
     closeModal() {
       this.modalIsOpen = false;
       this.$refs.list.updateList();
+    },
+    error(msg) {
+      this.errorMsg = msg;
     }
   },
 }
