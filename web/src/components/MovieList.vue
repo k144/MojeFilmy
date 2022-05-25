@@ -1,6 +1,5 @@
 <template>
   <div class="container has-text-centered pt-6" v-show="movies.length > 0">
-    <button class="button is-primary my-3" @click="addMovie">Dodaj film</button>
     <table class="table mx-auto has-text-left">
       <thead>
         <tr>
@@ -31,6 +30,7 @@
         </td>
       </tr>
     </table>
+    <button class="button is-primary my-3" @click="addMovie">Dodaj film</button>
   </div>
 </template>
 
