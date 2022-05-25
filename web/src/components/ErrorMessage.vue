@@ -2,13 +2,17 @@
   <div class="columns is-centered" v-show="msg && !hide">
     <div class="column is-half">
       <div class="message is-danger my-6">
-          <div class="message-header">
-            <p>Błąd</p>
-            <button @click="hide=true" class="delete" aria-label="delete"></button>
-          </div>
-          <div class="message-body">
-            <p>{{msg}}</p>
-          </div>
+        <div class="message-header">
+          <p>Błąd</p>
+          <button
+            @click="hide = true"
+            class="delete"
+            aria-label="Zamknij"
+          ></button>
+        </div>
+        <div class="message-body">
+          <p>{{ msg }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -20,10 +24,10 @@ export default {
   props: ["msg"],
   data() {
     return {
-      hide: false
-    }
-  }
-}
+      hide: false,
+    };
+  },
+};
 </script>
 
 <style>

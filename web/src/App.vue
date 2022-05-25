@@ -1,35 +1,35 @@
 <template>
+  <div id="app">
+    <section class="hero is-black">
+      <div class="hero-body has-text-centered">
+        <p class="title">Moje Filmy</p>
+        <p class="subtitle">Zadanie rekrutacyje dla SoftwareStudio</p>
+      </div>
+    </section>
 
-<div id="app">
+    <section class="section">
+      <MovieList @openModal="openModal" @error="error" ref="list" />
+      <ErrorMessage :msg="errorMsg" />
+    </section>
 
-  <section class="hero is-black">
-  <div class="hero-body has-text-centered">
-    <p class="title">
-      Moje Filmy
-    </p>
-    <p class="subtitle">
-      Zadanie rekrutacyje dla SoftwareStudio
-    </p>
+    <MovieModal
+      :class="{ 'is-active': modalIsOpen }"
+      :mode="modalMode"
+      :selected-movie="selectedMovie"
+      @closeModal="closeModal"
+      @error="error"
+    />
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p><a href="https://jakubnowak.xyz">Jakub Nowak</a></p>
+        <p>
+          <a href="mailto:jakubnowak712@gmail.com">jakubnowak712@gmail.com</a>
+        </p>
+        <p>maj 2022</p>
+      </div>
+    </footer>
   </div>
-</section>
-  
-  <section class="section">
-    <MovieList @openModal="openModal" @error="error" ref="list" />
-    <ErrorMessage :msg="errorMsg" />
-  </section>
-
-  <MovieModal :class='{ "is-active": modalIsOpen }' :mode="modalMode" :selected-movie="selectedMovie" @closeModal="closeModal" @error="error" />
-
-
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p><a href="https://jakubnowak.xyz">Jakub Nowak</a></p>
-      <p><a href="mailto:jakubnowak712@gmail.com">jakubnowak712@gmail.com</a></p>
-      <p>maj 2022</p>
-    </div>
-  </footer>
-</div>
-
 </template>
 
 <script>
@@ -40,13 +40,13 @@ import Movie from "./classes/movie.js";
 
 export default {
   name: "app",
-  data () {
+  data() {
     return {
       modalIsOpen: false,
       modalMode: undefined,
-      selectedMovie: new Movie,
+      selectedMovie: new Movie(),
       errorMsg: "",
-    }
+    };
   },
   components: {
     MovieList,
@@ -54,10 +54,10 @@ export default {
     ErrorMessage,
   },
   methods: {
-    openModal(mode, movie = new Movie) {
-      this.modalMode = mode
+    openModal(mode, movie = new Movie()) {
+      this.modalMode = mode;
       this.selectedMovie = movie;
-      this.modalIsOpen = true
+      this.modalIsOpen = true;
     },
     closeModal() {
       this.modalIsOpen = false;
@@ -65,9 +65,9 @@ export default {
     },
     error(msg) {
       this.errorMsg = msg;
-    }
+    },
   },
-}
+};
 </script>
 
 <style>
